@@ -15,8 +15,8 @@
                         <h1>{{$user->name.' '.$user->surname}}</h1>
                         <p>{{'Se unió: '.\FormatTime::LongTimeFilter($user->created_at)}}</p>
                     </div>
+                    <hr>
                 </div>
-                <hr>
                 <div class="clearfix">
 
                 </div>

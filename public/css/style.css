@@ -104,5 +104,7 @@ form .avatar{
     height: 100%;
 }
 
-
+.btn-search{
+    padding-left: 0;
+}
 

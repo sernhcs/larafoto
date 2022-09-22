@@ -100,5 +100,33 @@ class ImageController extends Controller
             return redirect()->route('home');
         }
     }
-    public function update
+    public function update(Request $request){
+        //validación
+        $validate= $this->validate($request,[
+            'description'=>'required' ,
+            'image_path'=>'image',
+        ]);
+
+        //conseguir datos
+        $image_id = $request->input('image_id');
+        $image_path = $request->file('image_path');
+        $description = $request->input('description');
+
+        //conseguir objeto eimag
+        $image =Image::find($image_id);
+        $image->description =$description;
+
+
+        //subir fichero
+        if ($image_path){
+            $image_path_name = time().$image_path->getClientOriginalName();
+            Storage::disk('images')->put($image_path_name, File::get($image_path));
+            $image->image_path = $image_path_name;
+        }
+
+        //actualizar registros
+        $image->update();
+        return redirect()   ->route('image.detail',['id'=>$image_id])
+                            ->with(['message'=>'Imagen actualizada con éxito']);
+    }
 }
