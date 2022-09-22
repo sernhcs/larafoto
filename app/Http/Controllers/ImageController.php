@@ -100,4 +100,5 @@ class ImageController extends Controller
             return redirect()->route('home');
         }
     }
+    public function update
 }

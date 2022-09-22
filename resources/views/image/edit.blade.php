@@ -14,6 +14,11 @@
                             <div class="form-group row">
                                 <label for="image_path" class="col-md-3 col-form-label text-md-right">Imagen</label>
                                 <div class="col-md-7">
+                                    @if($image->image_path)
+                                        <div class="container-avatar">
+                                            <img src="{{route('image.file',['filename'=>$image->image_path])}}" class="avatar"/>
+                                        </div>
+                                    @endif
                                     <input type="file" id="image_path" name="image_path"
                                            class="form-control {{$errors->has('image_path')?'is-invalid':'' }}">
                                     @if($errors->has('image_path'))
